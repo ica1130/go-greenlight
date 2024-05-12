@@ -1,11 +1,20 @@
 package data
 
-import "errors"
+import (
+	"database/sql"
+	"errors"
+)
 
 var (
 	ErrRecordNotFound = errors.New("record not found")
 )
 
-type Model struct {
+type Models struct {
 	Movies MovieModel
+}
+
+func NewModels(db *sql.DB) Models {
+	return Models{
+		Movies: MovieModel{DB: db},
+	}
 }
