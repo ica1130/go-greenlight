@@ -65,7 +65,7 @@ func (l *Logger) print(level Level, message string, properties map[string]string
 
 	aux := struct {
 		Level      string            `json:"level"`
-		Time       string            `json:"tile"`
+		Time       string            `json:"title"`
 		Message    string            `json:"message"`
 		Properties map[string]string `json:"properties,omitempty"`
 		Trace      string            `json:"trace,omitempty"`
