@@ -9,6 +9,7 @@ import (
 	"mygreenlight/internal/jsonlog"
 	"mygreenlight/internal/mailer"
 	"os"
+	"runtime"
 	"strings"
 	"sync"
 	"time"
@@ -93,6 +94,10 @@ func main() {
 	logger.PrintInfo("database connection pool established", nil)
 
 	expvar.NewString("version").Set(version)
+
+	expvar.Publish("goroutines", expvar.Func(func() interface{} {
+		return runtime.NumGoroutine()
+	}))
 
 	app := &application{
 		config: cfg,
