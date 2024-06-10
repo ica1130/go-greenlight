@@ -103,6 +103,10 @@ func main() {
 		return db.Stats()
 	}))
 
+	expvar.Publish("timestamp", expvar.Func(func() interface{} {
+		return time.Now().Unix()
+	}))
+
 	app := &application{
 		config: cfg,
 		logger: logger,
