@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"database/sql"
+	"expvar"
 	"flag"
 	"mygreenlight/internal/data"
 	"mygreenlight/internal/jsonlog"
@@ -90,6 +91,8 @@ func main() {
 	defer db.Close()
 
 	logger.PrintInfo("database connection pool established", nil)
+
+	expvar.NewString("version").Set(version)
 
 	app := &application{
 		config: cfg,
