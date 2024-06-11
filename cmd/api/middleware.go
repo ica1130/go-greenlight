@@ -225,7 +225,7 @@ func (app *application) metrics(next http.Handler) http.Handler {
 
 		totalResponsesSent.Add(1)
 
-		duration := time.Now().Sub(start).Microseconds()
+		duration := time.Since(start).Microseconds()
 		totalProcessingTimeMicroseconds.Add(duration)
 	})
 }
