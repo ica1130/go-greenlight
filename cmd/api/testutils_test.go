@@ -11,7 +11,7 @@ type testServer struct {
 	*httptest.Server
 }
 
-func newTestApplication(t *testing.T) *application {
+func newTestApplication() *application {
 	app := new(application)
 	cfg := config{env: "testing"}
 	app.config = cfg
@@ -21,6 +21,9 @@ func newTestApplication(t *testing.T) *application {
 
 func newTestServer(t *testing.T, h http.Handler) *testServer {
 	ts := httptest.NewTLSServer(h)
+	ts.Client().CheckRedirect = func(req *http.Request, via []*http.Request) error {
+		return http.ErrUseLastResponse
+	}
 	return &testServer{ts}
 }
 
