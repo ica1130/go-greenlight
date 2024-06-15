@@ -34,6 +34,7 @@ func (ts *testServer) get(t *testing.T, urlPath string) (int, http.Header, []byt
 	}
 
 	defer res.Body.Close()
+
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		t.Fatal(err)
