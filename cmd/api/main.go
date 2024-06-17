@@ -20,6 +20,8 @@ import (
 
 const version = "1.0.0"
 
+var buildTime string
+
 type config struct {
 	port int
 	env  string
@@ -88,6 +90,7 @@ func main() {
 
 	if *displayVersion {
 		fmt.Printf("version:\t%s\n", version)
+		fmt.Printf("Build time:\t%s\n", buildTime)
 		os.Exit(0)
 	}
 
